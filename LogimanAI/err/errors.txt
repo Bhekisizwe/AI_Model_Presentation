@@ -1,0 +1,30 @@
+1.) Oops, error in Class DatabaseManager within method dbConnect has occured at 2018-10-10 12:44:19 .Error message is Class 'UserClasses\DataLayer\Error' not found
+ ####End of Line#### 
+2.) Oops, error in Class Email within method sendEmail has occured at 2018-10-10 13:18:42 .Exception message is Successfully Sent Email!!!
+ ####End of Line#### 
+3.) Oops, error in Class Email within method sendEmail has occured at 2018-10-10 13:31:58 .Exception message is Successfully Sent Email!!!
+ ####End of Line#### 
+4.) Oops, error in Class Email within method sendEmail has occured at 2018-10-10 13:35:23 .Exception message is Successfully Sent Email!!!
+ ####End of Line#### 
+5.) Oops, error in Class Email within method sendEmail has occured at 2018-10-10 13:37:17 .Exception message is Successfully Sent Email!!!
+ ####End of Line#### 
+6.) Oops, error in Class Email within method sendEmail has occured at 2018-10-10 13:38:05 .Exception message is Successfully Sent Email!!!
+ ####End of Line#### 
+7.) Oops, error in Class Email within method sendEmail has occured at 2018-10-10 13:39:20 .Exception message is Successfully Sent Email!!!
+ ####End of Line#### 
+8.) Oops, error in Class Email within method sendEmail has occured at 2018-10-10 13:40:09 .Exception message is Successfully Sent Email!!!
+ ####End of Line#### 
+9.) Oops, error in Class Email within method sendEmail has occured at 2018-10-10 13:41:15 .Exception message is Successfully Sent Email!!!
+ ####End of Line#### 
+10.) Oops, error in Class Email within method sendEmail has occured at 2018-10-10 13:54:15 .Exception message is Successfully Sent Email!!!
+ ####End of Line#### 
+11.) Oops, error in Class Email within method sendEmail has occured at 2018-10-10 13:56:14 .Exception message is Successfully Sent Email!!!
+ ####End of Line#### 
+12.) Oops, error in Class Email within method sendEmail has occured at 2018-10-10 13:56:51 .Exception message is Successfully Sent Email!!!
+ ####End of Line#### 
+13.) Oops, error in Class Email within method sendEmail has occured at 2018-10-10 14:10:49 .Exception message is Successfully Sent Email!!!
+ ####End of Line#### 
+14.) Oops, error in Class Email within method sendEmail has occured at 2018-10-10 14:26:19 .Exception message is Successfully Sent Email!!!
+ ####End of Line#### 
+15.) Oops, error in Class Email within method sendEmail has occured at 2018-10-10 14:27:30 .Exception message is Successfully Sent Email!!!
+ ####End of Line#### 

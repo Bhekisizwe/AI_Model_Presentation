@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/html/css/bootstrap.min.css">
+
+    <title>Login Screen</title>
+  </head>
+  <body style="background-color:#ccccff">
+    <div align="center" class="container-fluid">
+    	<h3 class="h3">Welcome to the AI Presentation Login Screen</h3><p>
+	    	<div id="notification" class="alert alert-primary"></div><p>	    		
+    		<div class="form-group">
+    			<form style="border:1px solid #888888;width:30%;background-color:#eeeeee" class="rounded" id="loginForm">
+    				<input type="text" class="form-control" placeholder="Enter staff number" id="staffNumber" pattern="[a-zA-Z0-9]{4,}" title="Four or more Alpha-Numeric (i.e Letters and Digits only) characters necessary for the Staff Number" autocomplete="off" required><p>
+		    		<p>		    		
+		    		<input type="password" class="form-control" placeholder="Enter password" id="passwordHash" pattern="[a-zA-Z0-9]{8,}" title="Eight or more Alpha-numeric (i.e Letters and Digits only) characters necessary for the Password" autocomplete="off" required><p>
+		    		<input type="submit" id="login" class="btn btn-primary" value="LOGIN"><p>		    		
+		    		
+		    		</p>    		
+    			</form>    
+	    	</div>
+    	 
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/html/js/jquery-3.3.1.min.js"></script>
+    <script src="/html/js/bootstrap.bundle.min.js"></script>
+    <script>   
+    $(document).ready(function(){
+    	//detect browser    	
+    	var browser=navigator.userAgent;
+    		arr_browser=browser.split(" ");
+    		status_flag=false;
+    		$("#notification").hide();
+    	    for(var i=0;i<arr_browser.length;i++){
+    	    	var chromeReg=new RegExp("[cC]hrome(.)*");
+    	    	var firefoxReg=new RegExp("[fF]irefox(.*)");
+    	    	//alert(arr_browser[i]);
+    	    	if(chromeReg.test(arr_browser[i])){
+    	    		//then we know we are dealing with Google Chrome
+    	    		//Let us find its version and check if it meets our specification requirements
+    	    		version=arr_browser[i].split("/")[1];
+    	    		major_version=version.split(".")[0];
+    	    		if(major_version>=66){    	    			
+    	    			status_flag=true;
+    	    			break;
+    	    		}
+    	    	}
+    	    	if(firefoxReg.test(arr_browser[i])){
+    	    		//then we know we are dealing with Google Chrome
+    	    		//Let us find its version and check if it meets our specification requirements
+    	    		version=arr_browser[i].split("/")[1];
+    	    		major_version=version.split(".")[0];
+    	    		//alert(major_version);
+    	    		if(major_version>=62){    	    			
+    	    			status_flag=true;
+    	    			break;
+    	    		}
+    	    	}
+    	    }
+    	    if(!status_flag) {
+    	    	//browser is not supported or the browser needs upgrading
+    	    	//alert("Testing");
+    	    	msg="Oops, your browser is not supported. We only support Firefox version 57 and above <br>";
+    	    	msg+=" and Google Chrome version 66 and above. To download the latest Google Chrome browser <a href='https://www.google.com/chrome/' class='active' target='_new'>click here<a>.<br>";
+    	    	msg+="To download the latest Mozilla Firefox browser <a href='https://www.mozilla.org/en-US/firefox/new/' class='active' target='_new'>click here</a>.";
+    	    	//alert(msg);
+    	    	$("#notification").html(msg);
+    	    	$("#notification").show();
+    	    }
+    	    else{
+    	    	$('#loginForm').submit(function (event){
+    	    		var staffNumber=$('#staffNumber').val();
+    	    		var password=$('#passwordHash').val();
+    	    		//send this data to the server API endpoint
+    	    		//if(staffNumber)
+    	    		//alert($('#loginForm')[0].checkValidity());
+    	    		
+    	    		if($("#loginForm")[0].checkValidity()){  
+				$("#login").val("ENTERING APP...");  			
+    	    			//alert(staffNumber+"_"+password);    			
+    	    			url="/login/checkexistence/"+staffNumber+"_"+password;    	
+    	    			//alert(url);
+    	    			var jqxhr=$.getJSON(    
+    	    			    url,    			    
+    	    			    function(data,status){    			    	
+    	    			    	//alert(data["staffNumber"]);    			        
+    	    			    }).done(function(data){
+    	    			    	//successfully executed transaction
+    	    			    	//check if active account exists    			    	
+    	    			    	if(data["transactionStatus"] && data["dataExistsStatus"]){
+    	    			    		if(data["userRoleName"]=="Super Admin"){
+    	    			    			//load menu for super administrator    			    			
+    	    			    			window.location="/html/superadminmenu.php";
+    	    			    		}
+    	    			    		else if(data["userRoleName"]=="Admin"){
+    	    			    			//load menu for administrators
+    	    			    			window.location="/html/adminmenu.php";	
+    	    			    		}
+    	    			    		else{
+    	    			    			//the rest of the userroles will get the same menu
+    	    			    			window.location="/html/normalmenu.php";
+    	    			    		}
+    	    			    	}
+    	    			    	else {
+    	    			    		alert("Invalid Login Credentials!");
+						$("#login").val("LOGIN");
+    	    			    		$("#staffNumber").val("");	//reset fields
+    	        			    	$("#passwordHash").val("");
+    	   			    		}
+    	    			    }).fail(function(data){
+    	    			    	alert("Error:transaction failed"+data.responseText); 
+					$("#login").val("LOGIN");   			    	
+    	    			    });
+    	    				 
+    	    		}
+    	    		event.preventDefault();
+    	    	});   	
+    	    }
+    	    //alert("Browser is:"+browserName+" and version is:"+browserVersion);
+    		
+    	
+    	
+    });
+    	
+    </script>    
+  </body>
+</html>
